@@ -70,6 +70,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'MovieRecommendation.wsgi.application'
+import os
+
+# Construct the path dynamically
+file_path = os.path.join(os.path.dirname(__file__), 'relative_path_to_file', 'mi_data.csv')
+
+# Use file_path in your code
+
 
 
 # Database
@@ -114,8 +121,6 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
 
