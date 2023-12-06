@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation</title>
+    <!-- Add Bootstrap CSS link here -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyAq3DGHpa2DQiS6Ook4b9a7FqFJdExCK" crossorigin="anonymous">
+    <style>
+        body {
+            background-image: url('https://wallpapercave.com/wp/wp3168865.jpg');
+            background-size: cover;
+            color: red;
+        }
+
+        .jumbotron {
+            background: transparent;
+        }
+
+        /* Add styles for input and button */
+        .form-group {
+            margin-bottom: 20px; /* Add space between input and button */
+        }
+
+        input[type="text"] {
+            width: 300px; /* Increase input size */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <!-- Bootstrap Jumbotron with Welcome Message -->
+        <div class="jumbotron">
+            <h1 class="display-4 text-center">Welcome to Movie Recommendation System</h1>
+
+            <!-- Bootstrap Form with Search Bar -->
+            <form method="post" class="text-center">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.movie_title.label_tag }}
+                    {{ form.movie_title }}
+                </div>
+
+                <button type="submit" class="btn btn-primary">Get Recommendations</button>
+            </form>
+
+            <!-- Display Recommendations -->
+            {% if recommendations %}
+            <div class="mt-4">
+                <h2 class="text-center mb-3">Recommended Movies:</h2>
+                <ul class="list-group">
+                    {% for movie in recommendations %}
+                    <li class="list-group-item">{{ movie }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and Popper.js links here -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-JKJQ95CR5Ci8FflU4E0Mp/83MK6nRaTjHjx6Ixu86zgg2RRv2Cl5S8DEDPF7z9uU"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyAq3DGHpa2DQiS6Ook4b9a7FqFJdExCK"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
