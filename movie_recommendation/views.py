@@ -4,18 +4,18 @@ from .forms import MovieForm
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import pandas as pd
+import os
 
-# Read CSV file
-df = pd.read_csv(r'C:\Users\omputer Surgeon\Ml\mi_data.csv')
+# Use a relative path to the file
+file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'mi_data.csv')
 
-# Initialize CountVectorizer
+df = pd.read_csv(file_path)
+
 cv = CountVectorizer(max_features=5000, stop_words='english')
 tag_matrix = cv.fit_transform(df['tag']).toarray()
 
-# Calculate cosine similarity matrix
 similarity_matrix = cosine_similarity(tag_matrix)
 
-# Function to recommend movies
 def recommend_movie(movie_title):
     if movie_title not in df['title'].values:
         return [f"Movie '{movie_title}' not found in the dataset."]
@@ -25,7 +25,6 @@ def recommend_movie(movie_title):
     recommended_movies = [df.iloc[i[0]]['title'] for i in distances[1:6]]
     return recommended_movies if recommended_movies else ["No recommendations available."]
 
-# View function
 def movie_recommendation(request):
     recommendations = None
 

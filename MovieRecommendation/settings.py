@@ -70,13 +70,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'MovieRecommendation.wsgi.application'
-import os
-
-# Construct the path dynamically
-file_path = os.path.join(os.path.dirname(__file__), 'relative_path_to_file', 'mi_data.csv')
-
-# Use file_path in your code
-
 
 
 # Database
